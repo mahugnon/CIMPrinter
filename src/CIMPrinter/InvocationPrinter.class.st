@@ -19,7 +19,13 @@ InvocationPrinter >> cimPrint: invoc on: stream [
 		<< invoc sourceAnchor startLine asString;
 		<< ';';
 		<< invoc sourceAnchor endLine asString;
-		<< ';'.
+		<< ';';
+		<<
+			(invoc sourceAnchor startLine - invoc source sourceAnchor startLine)
+				asString;
+		<<
+			(invoc sourceAnchor startLine - invoc source sourceAnchor endLine)
+				asString.
 	self cimPrintArguments: invoc arguments on: stream.
 	stream cr.
 	^ stream
@@ -60,6 +66,7 @@ InvocationPrinter >> printAll: aSymbol for: aFamixPWBBehaviors [
 { #category : #printing }
 InvocationPrinter >> printHeaderOn: stream [
 	^ stream
-		<< 'Appellant;ligne_debut;ligne_fin;arguements';
+		<<
+			'Appellant;ligne_debut;ligne_fin;ligne_debut_relative;ligne_fin_relative;arguements';
 		cr
 ]
