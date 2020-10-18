@@ -23,9 +23,11 @@ InvocationPrinter >> cimPrint: invoc on: stream [
 		<<
 			(invoc sourceAnchor startLine - invoc source sourceAnchor startLine)
 				asString;
+		<< ';';
 		<<
-			(invoc sourceAnchor startLine - invoc source sourceAnchor endLine)
-				asString.
+			(invoc sourceAnchor startLine - invoc source sourceAnchor startLine)
+				asString;
+		<< ';'.
 	self cimPrintArguments: invoc arguments on: stream.
 	stream cr.
 	^ stream
