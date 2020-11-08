@@ -8,6 +8,13 @@ Class {
 }
 
 { #category : #printing }
+InvocationPrinter class >> printAll: aSymbol for: aFamixPWBBehaviors in: aFileReference [
+	^ self new
+		file: aFileReference;
+		printAll: aSymbol for: aFamixPWBBehaviors
+]
+
+{ #category : #printing }
 InvocationPrinter >> cimPrint: invoc on: stream [
 	stream
 		<< invoc source parentType library name;
@@ -15,10 +22,6 @@ InvocationPrinter >> cimPrint: invoc on: stream [
 		<< invoc source parentType name;
 		<< '.';
 		<< invoc source name;
-		<< ';';
-		<< invoc sourceAnchor startLine asString;
-		<< ';';
-		<< invoc sourceAnchor endLine asString;
 		<< ';';
 		<<
 			(invoc sourceAnchor startLine - invoc source sourceAnchor startLine)
@@ -69,6 +72,6 @@ InvocationPrinter >> printAll: aSymbol for: aFamixPWBBehaviors [
 InvocationPrinter >> printHeaderOn: stream [
 	^ stream
 		<<
-			'Appellant;ligne_debut;ligne_fin;ligne_debut_relative;ligne_fin_relative;arguements';
+			'Appellant;ligne_debut_relative;ligne_fin_relative;arguements';
 		cr
 ]
